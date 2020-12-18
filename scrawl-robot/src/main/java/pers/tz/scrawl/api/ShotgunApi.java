@@ -46,7 +46,7 @@ public class ShotgunApi {
      *
      * @return
      */
-    public ApiResult refreshWatergunLevel() {
+    public ApiResult refreshShotgunLevel() {
         shotgunLevelService.refreshShotgunLevel();
         return ApiResult.ok();
     }
