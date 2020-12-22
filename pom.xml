@@ -5,6 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>scrawl-robot</module>
+        <module>ui-robot</module>
+        <module>common-robot</module>
     </modules>
 
     <parent>
