@@ -25,7 +25,7 @@ public class BtnBeanConfig {
     @Bean
     public JButton fireBtn() {
         JButton fireBtn = new JButton(fireSetPanelConfig.getFireBtn());
-        fireBtn.setBounds(35 * UIUnitsType.LOCATION_UNIT_10, 40 * UIUnitsType.LOCATION_UNIT_10,
+        fireBtn.setBounds(40 * UIUnitsType.LOCATION_UNIT_10, 40 * UIUnitsType.LOCATION_UNIT_10,
                 35 * UIUnitsType.LOCATION_UNIT_10, 10 * UIUnitsType.LOCATION_UNIT_10);
         fireBtn.setFont(btnFont);
         fireBtn.setUI(new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.red));

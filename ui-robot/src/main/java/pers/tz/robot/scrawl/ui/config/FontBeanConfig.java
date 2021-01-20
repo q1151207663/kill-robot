@@ -48,4 +48,13 @@ public class FontBeanConfig {
         return new Font(commonConfig.getFontStyle(), Font.BOLD, commonConfig.getBtnFontSize());
     }
 
+    /**
+     * 超链接字体
+     *
+     * @return
+     */
+    @Bean
+    public Font linkFont() {
+        return new Font(commonConfig.getFontStyle(), Font.PLAIN, commonConfig.getLinkFontSize());
+    }
 }

@@ -41,6 +41,27 @@ public class ComboBoxBeanConfig {
 
 
     /**
+     * 更新数量下拉框
+     *
+     * @return
+     */
+    @Bean
+    public JComboBox<Integer> updateShotgunSelect() {
+        JComboBox<Integer> select = new JComboBox<>();
+        select.addItem(100);
+        select.addItem(1000);
+        select.addItem(2000);
+        select.addItem(5000);
+        select.addItem(10000);
+        select.setFont(commonFont);
+        select.setEditable(true);
+        select.setBounds(24 * UIUnitsType.LOCATION_UNIT_10, 15 * UIUnitsType.LOCATION_UNIT_10,
+                20 * UIUnitsType.LOCATION_UNIT_10, 4 * UIUnitsType.LOCATION_UNIT_10);
+        return select;
+    }
+
+
+    /**
      * 调节数量select框
      *
      * @return

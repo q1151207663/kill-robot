@@ -13,11 +13,14 @@ import org.springframework.stereotype.Component;
 @Data
 public class CommonConfig {
 
+    @Value("${common.font-style}")
+    private String fontStyle;
+
     @Value("${common.font-size}")
     private Integer fontSize;
 
-    @Value("${common.font-style}")
-    private String fontStyle;
+    @Value("${common.link.font-size}")
+    private Integer linkFontSize;
 
     @Value("${common.title.font-size}")
     private Integer titleFontSize;
@@ -25,4 +28,15 @@ public class CommonConfig {
     @Value("${common.btn.font-size}")
     private Integer btnFontSize;
 
+    /**
+     * 前往装弹设置界面
+     */
+    @Value("${to-loading.label.text}")
+    private String toLoadingText;
+
+    /**
+     * 前往开火设置界面
+     */
+    @Value("${to-fire.label.text}")
+    private String toFireLoadingText;
 }

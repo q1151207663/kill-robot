@@ -21,7 +21,7 @@ public class ShotgunApiTest {
     @Test
     public void testScrawlShotgunLevel() {
         // todo 清空弹匣文件
-        shotgunApi.persistenceShotgunLevel(5);
+        shotgunApi.persistenceShotgunLevel(10);
         System.out.println("robot successful");
     }
 

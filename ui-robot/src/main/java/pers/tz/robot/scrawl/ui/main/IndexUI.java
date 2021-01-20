@@ -1,13 +1,11 @@
 package pers.tz.robot.scrawl.ui.main;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import pers.tz.robot.scrawl.ui.config.CommonConfig;
 import pers.tz.robot.scrawl.ui.config.IndexConfig;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @Author twz
@@ -20,6 +18,7 @@ public class IndexUI extends JFrame {
 
     private IndexConfig indexConfig;
     private JPanel fireSetPanel;
+    private JPanel loadingSetPanel;
 
     private JLabel fireSetPanelTitleLabel;
     private JLabel speedLabel;
@@ -31,6 +30,8 @@ public class IndexUI extends JFrame {
     private JLabel lickDogLabel;
     private JLabel cloudFireLabel;
 
+    private JLabel loadingSetPanelTitleLabel;
+
     private JComboBox<Integer> speedSelect;
     private JComboBox<Integer> numberSelect;
     private JComboBox<String> fireStrategySelect;
@@ -39,6 +40,9 @@ public class IndexUI extends JFrame {
     private JComboBox<String> advancePressEnterSelect;
     private JComboBox<String> lickDogSelect;
     private JComboBox<String> cloudFireSelect;
+
+    private JLabel toLoadingLabel;
+    private JLabel toFireLabel;
 
     private JButton fireBtn;
 
@@ -50,6 +54,24 @@ public class IndexUI extends JFrame {
         this.setLocationRelativeTo(null); // 窗口居中
         this.setVisible(true);
 
+        initFireSetPanel();
+        initLoadingSetPanel();
+
+        this.setContentPane(fireSetPanel); // 开火设置面板
+        this.setContentPane(loadingSetPanel); // 装弹设置面板
+    }
+
+    /**
+     * 初始化装弹设置界面
+     */
+    private void initLoadingSetPanel() {
+        loadingSetPanel.add(loadingSetPanelTitleLabel); // 标题
+    }
+
+    /**
+     * 初始化开火设置界面
+     */
+    private void initFireSetPanel() {
         fireSetPanel.add(fireSetPanelTitleLabel); // 面板标题
 
         fireSetPanel.add(speedLabel); // 面板添加调节速度label
@@ -70,9 +92,10 @@ public class IndexUI extends JFrame {
         fireSetPanel.add(advancePressEnterSelect); // 舔狗模式select
         fireSetPanel.add(cloudFireSelect); // 云开火select
 
-        fireSetPanel.add(fireBtn); // 开火按钮
+        fireSetPanel.add(toLoadingLabel); // 跳转装弹配置label
+        fireSetPanel.add(toFireLabel); // 跳转开火配置label
 
-        this.setContentPane(fireSetPanel); // 开火设置面板
+        fireSetPanel.add(fireBtn); // 开火按钮
     }
 
 }

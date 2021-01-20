@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import pers.tz.robot.scrawl.ui.action.LinkMouseAction;
 import pers.tz.robot.scrawl.ui.constants.UIUnitsType;
 
 import javax.swing.*;
@@ -16,13 +16,24 @@ import java.awt.*;
  * @Desc TODO
  */
 @Configuration
-@AllArgsConstructor
 public class LabelBeanConfig {
 
+    @Autowired
     private FireSetPanelConfig fireSetPanelConfig;
+    @Autowired
+    private LoadingSetPanelConfig loadingSetPanelConfig;
+    @Autowired
+    private CommonConfig commonConfig;
+    @Autowired
     private Font commonFont;
+    @Autowired
     private Font titleFont;
-
+    @Autowired
+    private Font linkFont;
+    /**
+     * 是否是装弹界面
+     */
+    private Boolean isLoadingPanel = false;
 
     /**
      * 开火设置界面title
@@ -36,8 +47,26 @@ public class LabelBeanConfig {
         fireSetPanelTitleLabel.setForeground(Color.RED);
         fireSetPanelTitleLabel.setBounds(50 * UIUnitsType.LOCATION_UNIT_10, 2 * UIUnitsType.LOCATION_UNIT_10,
                 28 * UIUnitsType.LOCATION_UNIT_10, 3 * UIUnitsType.LOCATION_UNIT_10);
+        fireSetPanelTitleLabel.setVisible(!isLoadingPanel);
         return fireSetPanelTitleLabel;
     }
+
+    /**
+     * 装弹界面title
+     *
+     * @return
+     */
+    @Bean
+    public JLabel loadingSetPanelTitleLabel() {
+        JLabel loadingSetPanelTitleLabel = new JLabel(loadingSetPanelConfig.getLoadingSetPanelTitle());
+        loadingSetPanelTitleLabel.setFont(titleFont);
+        loadingSetPanelTitleLabel.setForeground(Color.RED);
+        loadingSetPanelTitleLabel.setBounds(50 * UIUnitsType.LOCATION_UNIT_10, 2 * UIUnitsType.LOCATION_UNIT_10,
+                28 * UIUnitsType.LOCATION_UNIT_10, 3 * UIUnitsType.LOCATION_UNIT_10);
+        loadingSetPanelTitleLabel.setVisible(isLoadingPanel);
+        return loadingSetPanelTitleLabel;
+    }
+
 
 
     /**
@@ -53,6 +82,33 @@ public class LabelBeanConfig {
         speedLabel.setBounds(12 * UIUnitsType.LOCATION_UNIT_10, 15 * UIUnitsType.LOCATION_UNIT_10,
                 11 * UIUnitsType.LOCATION_UNIT_10, 4 * UIUnitsType.LOCATION_UNIT_10);
         return speedLabel;
+    }
+
+
+    /**
+     * 更新强弹药库
+     *
+     * @return
+     */
+    @Bean
+    public JLabel updateShotgunLevelLabel() {
+        JLabel label = new JLabel(loadingSetPanelConfig.getUpdateShotgunLevelText());
+        label.setFont(commonFont);
+        label.setForeground(Color.WHITE);
+        label.setBounds(12 * UIUnitsType.LOCATION_UNIT_10, 15 * UIUnitsType.LOCATION_UNIT_10,
+                11 * UIUnitsType.LOCATION_UNIT_10, 4 * UIUnitsType.LOCATION_UNIT_10);
+        label.setVisible(isLoadingPanel);
+        return label;
+    }
+
+
+    /**
+     * 强弹药库追加更新
+     *
+     * @return
+     */
+    public JLabel shotgunAppendUpdateLabel() {
+
     }
 
     /**
@@ -163,5 +219,43 @@ public class LabelBeanConfig {
                 11 * UIUnitsType.LOCATION_UNIT_10, 4 * UIUnitsType.LOCATION_UNIT_10);
         return cloudFireLabel;
     }
+
+
+    /**
+     * 前往装弹配置
+     *
+     * @return
+     */
+    @Bean
+    public JLabel toLoadingLabel() {
+        JLabel toLoadingLabel = new JLabel(commonConfig.getToLoadingText());
+        toLoadingLabel.setFont(linkFont);
+        toLoadingLabel.setForeground(Color.WHITE);
+        toLoadingLabel.setBounds(90 * UIUnitsType.LOCATION_UNIT_10, 50 * UIUnitsType.LOCATION_UNIT_10,
+                10 * UIUnitsType.LOCATION_UNIT_10, 3 * UIUnitsType.LOCATION_UNIT_10);
+        toLoadingLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); // 鼠标样式
+        toLoadingLabel.addMouseListener(new LinkMouseAction(toLoadingLabel, commonConfig));
+        return toLoadingLabel;
+    }
+
+
+    /**
+     * 前往开火配置
+     * 起初隐藏
+     *
+     * @return
+     */
+    @Bean
+    public JLabel toFireLabel() {
+        JLabel toFireLabel = new JLabel(commonConfig.getToFireLoadingText());
+        toFireLabel.setFont(linkFont);
+        toFireLabel.setForeground(Color.WHITE);
+        toFireLabel.setBounds(100 * UIUnitsType.LOCATION_UNIT_10, 50 * UIUnitsType.LOCATION_UNIT_10,
+                10 * UIUnitsType.LOCATION_UNIT_10, 3 * UIUnitsType.LOCATION_UNIT_10);
+        toFireLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); // 鼠标样式
+        toFireLabel.addMouseListener(new LinkMouseAction(toFireLabel, commonConfig));
+        return toFireLabel;
+    }
+
 
 }
